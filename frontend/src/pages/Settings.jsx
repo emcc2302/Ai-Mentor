@@ -804,7 +804,6 @@ export default function Settings() {
                 </div>
               </div>
             )}
-            //=== Profile Popup======//
             {profilepopup && (
                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-55 animate-fadeIn">
 
