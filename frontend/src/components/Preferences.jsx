@@ -187,9 +187,16 @@ export default function Preferences({ mode = "modal", onSuccess }) {
         }
       } catch (err) {
         console.error("Failed to fetch preferences:", err);
-        // Cache as loaded even if no preferences exist (404) or error
         const tokenForCache = localStorage.getItem("token");
-        moduleCache = { token: tokenForCache, data: null, hasExisting: false, loaded: true };
+
+        if (axios.isAxiosError(err) && err.response?.status === 404) {
+          // No preferences exist - cache this state to prevent re-fetching
+          setHasExisting(false);
+          moduleCache = { token: tokenForCache, data: null, hasExisting: false, loaded: true };
+        } else {
+          // Keep transient/network/server errors retryable
+          moduleCache = { token: tokenForCache, data: null, hasExisting: false, loaded: false };
+        }
       } finally {
         setLoading(false);
       }
