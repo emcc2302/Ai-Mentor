@@ -4,7 +4,7 @@ import Stripe from "stripe";
 const router = express.Router();
 
 // ✅ Initialize Stripe safely
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe("sk_test_12345");
 
 // ✅ CREATE CHECKOUT SESSION
 router.post("/create-checkout-session", async (req, res) => {

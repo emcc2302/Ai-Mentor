@@ -24,9 +24,9 @@ from config import (
 # Cloudinary Config
 # --------------------------
 cloudinary.config(
-    cloud_name=CLOUDINARY_CLOUD_NAME,
-    api_key=CLOUDINARY_API_KEY,
-    api_secret=CLOUDINARY_API_SECRET,
+    cloud_name="dusaucow2",
+    api_key="186225514619958",
+    api_secret="WD3MMGNrELMyhlmNFtZuLiF-N-0s",
     secure=True,
 )
 
@@ -46,7 +46,7 @@ app.add_middleware(
 # --------------------------
 # Gemini Client
 # --------------------------
-client = genai.Client(api_key=GEMINI_API_KEY)
+client = genai.Client(api_key="AIzaSyBXNBQ7LFPtUTJI0Urbz0iRqcs5SE5P3a4")
 
 # --------------------------
 # Request Model

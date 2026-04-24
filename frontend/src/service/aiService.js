@@ -1,9 +1,8 @@
 export const getAIVideo = async (payload) => {
   const token = localStorage.getItem("token");
-  console.log(payload);
 
   const response = await fetch(
-    "/api/ai/generate-video",
+    `http://localhost:5000/api/ai/generate-video`,
     {
       method: "POST",
       headers: {
@@ -14,10 +13,19 @@ export const getAIVideo = async (payload) => {
     }
   );
 
-  const data = await response.json();
+  console.log("STATUS:", response.status);
+console.log("URL:", response.url);
+
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (err) {
+    throw new Error("Server returned empty or invalid JSON");
+  }
 
   if (!response.ok) {
-    throw new Error(data.message || "Failed to fetch AI video");
+    throw new Error(data?.message || "Request failed");
   }
 
   return data;
